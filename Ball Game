@@ -1,17 +1,21 @@
+                     //Променливите на топчето
 int xBall = 400;
 int yBall = 400;
 int rBall = 15;
 float ballspeedY = 1;
 float ballspeedX = 1;
 
+                        //Променливата за дъното
 int bottom = 250;
 
+                    //Променливите на платформата
 int xRect = 400;
 int yRect = 720;
 int wRect = 200;
 int hRect = 20;
 int rectspeed = 2;
-
+                                 
+                                 //Дъното на квадратчетата
 boolean gameover = false;
 
 void setup(){
@@ -20,13 +24,17 @@ void setup(){
 }
 
 void draw(){
+                   //Ако играта е свършила
   if(!gameover){
     background(0);
+                         //Топчето
     fill(255, 255, 0);
     ellipse(xBall, yBall, 2*rBall, 2*rBall);
+                     //Платформата
     fill(#B94040);
     rect(xRect, yRect, wRect, hRect);
   
+                                      //if-ве за движението на платформата
     if(keyPressed && key == 'a'){
      xRect = xRect - rectspeed;     
     }
@@ -35,6 +43,7 @@ void draw(){
      xRect = xRect + rectspeed;     
     }
 
+                              //Ако плътформата мине през едната стена да излезе през другата
     if(xRect + wRect < 0){
      xRect = width;
     }
@@ -43,25 +52,27 @@ void draw(){
      xRect = 0;
     } 
    
+                                                                                          //Ако топчето се удари в платформата да рикушира
    if(xBall > xRect && xBall < xRect + wRect && yBall < yRect + hRect && yBall > yRect){
       ballspeedY = -ballspeedY;
     }
    
+                                        //Ако топчето се удари в някоя от стените да рикушира
    if (xBall < 0 || xBall > width ){
      ballspeedX = -ballspeedX;
     }
-   
+    
+                          //Ако топчето се удари в тавана да рикушира
    if(yBall == 0){
       ballspeedY = -ballspeedY;
     }
     
+                          //Движението на топчето
    yBall += ballspeedY;
    xBall += ballspeedX;
    
-   for(int i = 0; i <= width; i += 50){
-      if(i % 2 == 1){
-        fill(#F27373);
-      }
+                                        //Цикъла, който строи квадратчетата
+  for(int i = 0; i <= width; i += 50){
      rect(i, 0, 50, 50);
      rect(i, 50, 50, 50);
      rect(i, 100, 50, 50);
@@ -69,41 +80,20 @@ void draw(){
      rect(i, 200, 50, 50);
     }
     
-     if(yBall < bottom){
+                            //Ако топчето се удари в дъното на квадратчетата да рикушира, скороста му да се овеличи и дъното да се намали с 50 
+      if(yBall < bottom){
         ballspeedY = -ballspeedY;
         ballspeedX = -ballspeedX;
         ballspeedX += 1;
         bottom -= 50;
     }
-    if(yBall < bottom){
-      ballspeedY = -ballspeedY;
-      ballspeedX = -ballspeedX;
-      ballspeedX += 1;
-      bottom -= 50;
-    }
-    if(yBall < bottom){
-      ballspeedY = -ballspeedY;
-      ballspeedX = -ballspeedX;
-      ballspeedX += 1;
-      bottom -= 50;
-    }
-    if(yBall < bottom){
-      ballspeedY = -ballspeedY;
-      ballspeedX = -ballspeedX;
-      ballspeedX += 1;
-      bottom -= 50;
-    }
-    if(yBall < bottom){
-      ballspeedY = -ballspeedY;
-      ballspeedX = -ballspeedX;
-      ballspeedX += 1;
-      bottom -= 50;
-    }
-      
-    if(yBall == height){
-     gameover = true;
-    }
+  
+                                //Ако топчето се удари в края на прозореца играта да приключи
+      if(yBall == height){
+        gameover = true;
+     }
     
+                         //Ако дъното стане 0 играта да свърши, фона да стане жълт и да се изпише текст
     if(bottom == 0){
       background(255, 255, 0 );
       ballspeedX = 0;
@@ -111,21 +101,23 @@ void draw(){
       fill(255, 0, 0);
       textSize(30);
       text("Congratulations for winning! Press R to restart.", 100, 400);
+                                         //Ако е натиснато r докато играта е свършила и дъното е 0 играта да се рестартира
        if(keyPressed && key == 'r'){
-       yBall = 300;
-       xBall = 400;
-       ballspeedX = 1;
-       ballspeedY = 1;
-       bottom = 250;
-       gameover = false;
-     }
+         yBall = 300;
+         xBall = 400;
+         ballspeedX = 1;
+         ballspeedY = 1;
+         bottom = 250;
+         gameover = false;
+       }
     }
- 
+                 //Ако играта е свършила фона да е черен и да е изписан текст
     }else{
     background(0);
     fill (255);
     textSize(25);
     text("GAME OVER! Press R to try again...", 200, 400);
+                                     //Ако е натиснато r докато играта е свършила, играта да се рестартира 
      if(keyPressed && key == 'r'){
        yBall = 300;
        xBall = 400;
