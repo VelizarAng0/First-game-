@@ -1,4 +1,4 @@
-                     //Променливите на топчето
+                      //Променливите на топчето
 int xBall = 400;
 int yBall = 400;
 int rBall = 15;
@@ -73,18 +73,30 @@ void draw(){
    
                                         //Цикъла, който строи квадратчетата
   for(int i = 0; i <= width; i += 50){
-     rect(i, 0, 50, 50);
-     rect(i, 50, 50, 50);
-     rect(i, 100, 50, 50);
-     rect(i, 150, 50, 50);
-     rect(i, 200, 50, 50);
+      if(bottom == 250){
+         fill(255,0,0);
+         rect(i, 200, 50, 50);
+      }if(bottom == 200){
+          fill(255,0,0);
+          rect(i, 150, 50, 50);
+       }if(bottom == 150){
+          fill(255,0,0);
+          rect(i, 100, 50, 50);
+       }if(bottom == 100){   
+          fill(255,0,0);
+          rect(i, 50, 50, 50);
+       }if(bottom == 50){
+         fill(255,0,0);
+         rect(i, 0, 50, 50);
     }
+  }
+ 
     
                             //Ако топчето се удари в дъното на квадратчетата да рикушира, скороста му да се овеличи и дъното да се намали с 50 
       if(yBall < bottom){
         ballspeedY = -ballspeedY;
         ballspeedX = -ballspeedX;
-        ballspeedX += 1;
+        ballspeedX += 2;
         bottom -= 50;
     }
   
