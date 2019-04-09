@@ -15,7 +15,7 @@ int wRect = 200;
 int hRect = 20;
 int rectspeed = 2;
                                  
-                                 //Дъното на квадратчетата
+                                 //Променливата казваща дали играта е свършила
 boolean gameover = false;
 
 void setup(){
